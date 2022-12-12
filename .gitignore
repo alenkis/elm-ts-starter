@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+elm-stuff/
+dist/
+build/
+node_modules/
+.parcel-cache
+.env*
+
+## TailwindCSS output
+src/css/main.css

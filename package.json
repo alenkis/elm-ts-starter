@@ -1,0 +1,68 @@
+{
+  "name": "ElmTypescriptStarter",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "author": "Alen Kis",
+  "scripts": {
+    "start": "parcel",
+    "dev": "run-p gen:types:w build:styles:watch start",
+    "build": "yarn build:styles && parcel build",
+    "build:styles": "tailwindcss -i src/css/styles.css -o src/css/main.css",
+    "build:styles:watch": "yarn build:styles --watch",
+    "gen:types": "elm-ts-interop --definition-module InteropDefinitions --output src/Main.elm.d.ts && prettier -w src/Main.elm.d.ts",
+    "gen:types:w": "sane 'yarn gen:types' --glob='src/InteropDefinitions.elm'",
+    "review": "elm-review",
+    "review:fix": "elm-review --fix",
+    "test:elm": "elm-test",
+    "test:elm:w": "elm-test --watch",
+    "test:js": "jest --rootDir=./src/",
+    "test:js:w": "test:js --watchAll"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "./tsconfig.json"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "@types/jest": "^29.2.4"
+  },
+  "devDependencies": {
+    "@parcel/transformer-elm": "^2.8.1",
+    "@parcel/validator-typescript": "^2.8.1",
+    "@tailwindcss/typography": "^0.5.8",
+    "@types/node": "^18.11.13",
+    "@typescript-eslint/parser": "^5.46.0",
+    "elm": "^0.19.1-5",
+    "elm-format": "^0.8.5",
+    "elm-review": "^2.8.5",
+    "elm-test": "^0.19.1-revision10",
+    "elm-ts-interop": "^0.0.8",
+    "eslint": "^8.29.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.8.1",
+    "postcss": "^8.4.20",
+    "prettier": "^2.8.1",
+    "process": "^0.11.10",
+    "sane": "^5.0.1",
+    "tailwindcss": "^3.2.4",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.9.4"
+  },
+  "targets": {
+    "base": {
+      "source": [
+        "src/css/main.css",
+        "src/js/index.ts"
+      ],
+      "distDir": "./dist"
+    }
+  }
+}
