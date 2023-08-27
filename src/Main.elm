@@ -2,10 +2,10 @@ module Main exposing (Model, Msg(..), main)
 
 import Browser
 import Browser.Events exposing (onResize)
-import Html exposing (Html, div)
+import Html exposing (Html, div, text)
 import Html.Attributes as Attr
-import InteropDefinitions exposing (ScreenSize(..), ToElm(..))
-import InteropPorts exposing (decodeFlags, toElm)
+import InteropDefinitions exposing (FromElm(..), ScreenSize(..), ToElm(..))
+import InteropPorts exposing (decodeFlags, fromElm, toElm)
 import Json.Decode as Decode
 
 
@@ -81,7 +81,7 @@ init : Decode.Value -> ( Model, Cmd Msg )
 init flags =
     case decodeFlags flags of
         Ok _ ->
-            ( initialModel, Cmd.none )
+            ( initialModel, AppInit |> fromElm )
 
         Err _ ->
             ( initialModel
@@ -92,4 +92,4 @@ init flags =
 view : Model -> Html Msg
 view _ =
     div [ Attr.class "w-5/6 m-auto" ]
-        []
+        [ text "Hello, world!" ]
